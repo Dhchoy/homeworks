@@ -1,0 +1,94 @@
+% HMC Math dept HW template example
+% v0.04 by Eric J. Malm, 10 Mar 2005
+\documentclass[12pt,letterpaper,boxed]{hmcpset}
+
+% set 1-inch margins in the document
+\usepackage[margin=1in]{geometry}
+
+% include this if you want to import graphics files with /includegraphics
+\usepackage{graphicx}
+
+% info for header block in upper right hand corner
+\name{蔡大亨}
+\studentid{131110090}
+\class{数学系}
+\assignment{泛函分析 \#1}
+\duedate{02/23/2016}
+
+\begin{document}
+\begin{CJK}{UTF8}{}
+
+\headerblock
+
+\setlength{\parindent}{0pt}
+\Large \textbf{作业:}
+\large
+
+\begin{problem}[Ex1:]
+  刻画 $l^p (1\leq p < \infty )$ 中点列的收敛.
+\end{problem}
+\begin{solution}
+  $l^p $ 中点列 $ x^n = \{x_k^n\}_{k=1}^{\infty} \to x = \{x_k\}_{k=1}^{\infty} $ 当且仅当点列 $ x^n_k \to x_k,\forall k $
+
+  由 $x^n,x \in l^p$和
+  \begin{align*}
+    \sup_k |x_k^n - x_k| &\leq \sum_{k=1}^{\infty} |x_k^n - x_k |^p = \sum_{k=1}^m |x_k^n - x_k |^p + \sum_{k=m+1}^{\infty}|x_k^n - x_k |^p \\
+    &\leq \sum_{k=1}^m |x_k^n - x_k |^{p-1}|x_k^n - x_k | + \sum_{k=m+1}^\infty 2^p (|x_k^n |^p +| x_k |^p)\\
+    &\leq \max_{1\leq k\leq m}|x_k^n - x_k |^{p-1}\sum_{k=1}^m |x_k^n - x_k | + \sum_{k=m+1}^\infty 2^p (|x_k^n |^p +| x_k |^p)
+  \end{align*}
+  可得.
+\end{solution}
+
+
+\begin{problem}[Ex2:]
+  空间 $s=\{\{x_n\}\subset \mathbb{R}^n \}$ 上定义有度量
+    \[ d(x,y) = \sum_{n=1}^\infty \frac{1}{2^n} \frac{|x_n-y_n|}{1+|x_n-y_n|} \]
+  \begin{itemize}
+    \item[(\romannumeral1)] 证明:$s$ 是度量空间
+    \item[(\romannumeral2)] 刻画 $s$ 中的点列收敛性.
+  \end{itemize}
+\end{problem}
+\begin{solution}[(\romannumeral1)]
+  只需证明三角不定式.注意到 $f(x)=\frac{x}{1+x}=1-\frac{1}{1+x},x\geq 0$ 是单调递增函数,于是
+    \[
+      \frac{|x+y|}{1+|x+y|}\leq \frac{|x|+|y|}{1+|x|+|y|} \leq \frac{|x|}{1+|x|} + \frac{|y|}{1+|y|}
+    \]
+  令 $ x = x_n-z_n,y = z_n - y_n $,并对两边求和,有
+    \begin{align*}
+        d(x,y) &= \sum_{n=1}^\infty \frac{1}{2^n} \frac{|x_n-y_n|}{1+|x_n-y_n|}\\
+        &\leq \sum_{n=1}^\infty \frac{1}{2^n} \frac{|x_n-z_n|}{1+|x_n-z_n|}+ \sum_{n=1}^\infty \frac{1}{2^n} \frac{|z_n-y_n|}{1+|z_n-y_n|}\\
+        &=d(x,z)+d(z,y)
+    \end{align*}
+  于是 $s$ 依度量 $d$ 构成度量空间.
+\end{solution}
+\begin{solution}[(\romannumeral2)]
+  $s$ 中点列 $ x^n = \{x_k^n\}_{k=1}^{\infty} \to x = \{x_k\}_{k=1}^{\infty} $ 当且仅当点列 $ x^n_k \to x_k,\forall k $
+  \begin{itemize}
+  \item 必要性:
+
+  当 $d(x^n,x) &= \sum_{k=1}^\infty \frac{1}{2^k} \frac{|x_^n-x_k|}{1+|x_k^n-x_k|}\to 0$ 时.\\
+  $\frac{|x_^n-x_k|}{1+|x_k^n-x_k|} \leq 2^k d(x^n,x) \to 0 $,于是 $|x_k^n-x_k|\to 0,\qquad k=1,2,\ldots,m,\ldots$.
+  \item 充分性:
+
+  当 $x_k^n \to x_k,k=1,2,\ldots. $对 $\forall \varepsilon > 0$,存在自然数 $m$ 使得
+  $\sum_{k=m}^\infty \frac{1}{2^k}\leq \frac{\varepsilon}{2} $.
+
+  又对 $ 1\leq k \leq m-1$,存在 $ N_k$ 使得当 $n>N_k$ 时,$|x_k^n-x_k|<\frac{\varepsilon}{2}$
+
+  取 $N=\max\{N_1,N_2,\ldots,N_{m-1}\}$,则当 $n>N$ 时,有:
+     \begin{align*}
+     d(x^n,x)& =(\sum_{k=1}^{m-1}+\sum_{k=m}^\infty) \frac{1}{2^k} \frac{|x_k^n-x_k|}{1+|x_k^n-x_k|}\\
+     &\leq \sum_{k=1}^{m-1}\frac{1}{2^k} \frac{\varepsilon/2}{1+\varepsilon/2}+\frac{\varepsilon}{2}\\
+     &\leq \frac{\varepsilon}{2}+\frac{\varepsilon}{2} = \varepsilon
+     \end{align*}
+  \end{itemize}
+\end{solution}
+
+
+
+
+
+
+
+\end{CJK}
+\end{document}

@@ -1,0 +1,87 @@
+% HMC Math dept HW template example
+% v0.04 by Eric J. Malm, 10 Mar 2005
+\documentclass[12pt,letterpaper,boxed]{hmcpset}
+
+% set 1-inch margins in the document
+\usepackage[margin=1in]{geometry}
+
+% include this if you want to import graphics files with /includegraphics
+\usepackage{graphicx}
+
+% info for header block in upper right hand corner
+\name{蔡大亨}
+\studentid{131110090}
+\class{数学系}
+\assignment{概率论 \#1}
+\duedate{02/23/2016}
+
+\begin{document}
+\begin{CJK}{UTF8}{}
+
+\headerblock
+
+\setlength{\parindent}{0pt} 
+\Large \textbf{作业:}
+\large
+
+\problemlist{第一章:Ex4,Ex6}
+  \begin{problem}[Ex4:]
+    试证:$\bigcup_{i=1}^n A_i = A_1 + \overline{A_1}A_2 + \overline{A_1}\overline{A_2}A_3 + \ldots + \overline{A_1}\overline{A_2}\ldots\overline{A_{n-1}}A_n $,并对 $n=4$ 画出文图.
+  \end{problem}
+  \begin{solution}
+    用数学归纳法,当 $n=1$ 时,显然成立.设当 $n = k $ 时上式成立,即
+    \[ \bigcup_{i=1}^k A_i = A_1 + \overline{A_1}A_2 + \overline{A_1}\overline{A_2}A_3 + \ldots + \overline{A_1}\overline{A_2}\ldots\overline{A_{k-1}}A_k  \]
+    当 $ n = k + 1 $ 时,有
+    \begin{align*}
+    \bigcup_{i=1}^{k+1} A_i & =\bigcup_{i=1}^{k} A_i \cup A_{k+1} \\
+        & = \bigcup_{i=1}^{k} A_i + \overline{\bigcup_{i=1}^{k} A_i} A_{k+1} \\
+        & = A_1 + \overline{A_1}A_2 + \overline{A_1}\overline{A_2}A_3 + \ldots + \overline{A_1}\overline{A_2}\ldots\overline{A_{k-1}} A_k + \bigcap_{i=1}^{k} \overline{A_i} A_{k+1}\\
+        & = A_1 + \overline{A_1}A_2 + \overline{A_1}\overline{A_2}A_3 + \ldots + \overline{A_1}\overline{A_2}\ldots\overline{A_{k-1}} A_k + \overline{A_1}\overline{A_2}\ldots\overline{A_{k}} A_{k+1}
+    \end{align*}
+        综上,由数学归纳法,对 $ \forall n \in \mathbb{Z} $都成立.
+        \newpage
+        Veen图:
+        \begin{center}
+          \includegraphics[scale=.8]{veen.jpg}
+        \end{center}
+  \end{solution}
+
+  \begin{problem}[Ex6:]
+    若 $A,B,C,D$ 是四个事件,试用这四个事件表示下列各事件:
+      \begin{itemize}
+        \item[(1)] 这四个事件至少发生一个:
+        \item[(2)] $A,B$ 都发生而 $C,D$ 都不发生;
+        \item[(3)] 这四个事件恰好发生两个;
+        \item[(4)] 这四个事件都不发生;
+        \item[(5)] 这四个事件至多发生一个.
+      \end{itemize}
+  \end{problem}
+  
+  
+  \begin{solution}[(1)]
+    \begin{align*}
+      &ABCD \cup \overline{A}BCD \cup A\overline{B}CD \cup AB\overline{C}D \cup ABC\overline{D} \\  
+      &\cup \overline{AB}CD \cup \overline{A}B\overline{C}D \cup \overline{A}BC\overline{D} 
+      \cup A\overline{BC}D \cup A\overline{B}C\overline{D} \cup AB\overline{CD} \\
+      &\cup \overline{ABC}D \cup \overline{AB}C\overline{D} \cup \overline{A}B\overline{CD} \cup A\overline{BCD}  
+    \end{align*}
+  \end{solution}
+  \begin{solution}[(2)]
+    $AB\overline{CD}$
+  \end{solution}
+  \begin{solution}[(3)]
+    $\overline{AB}CD \cup \overline{A}B\overline{C}D \cup \overline{A}BC\overline{D} 
+      \cup A\overline{BC}D \cup A\overline{B}C\overline{D} \cup AB\overline{CD}$
+  \end{solution}
+  \begin{solution}[(4)]
+    $\overline{ABCD}$
+  \end{solution}
+  \begin{solution}[(5)]
+    $\overline{ABC}D \cup \overline{AB}C\overline{D} \cup \overline{A}B\overline{CD} \cup A\overline{BCD} \cup \overline{ABCD}$
+  \end{solution}
+
+
+
+
+\end{CJK}
+\end{document}
